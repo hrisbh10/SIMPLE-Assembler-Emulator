@@ -1,5 +1,14 @@
 # SIMPLE-Assembler-Emulator
-An assembler and emulator based on SIMPLE instruction set
+An assembler and emulator based on SIMPLE instruction set.
+
+Assembler is a 2-pass assembler, which uses data structures in structures.h header file to store labels and data.
+* First pass: Identifies labels and data used in the .asm file, and prepare tables for them. Also checks for syntax errors.
+* Second pass: Checks for syntax errors and if no errors, generate object code and listing file
+
+Emulator is a program that executes the generated machine code, using mnemonics declared in mnemonics.h header as functions.
+* Trace: Prints the state of registers after execution of each line.
+* Before: Prints the memory dump before execution of the program.
+* After: Prints the memory dump after execution of the program.
 
 This assembly language is for a machine with four registers,
 * Two registers, A & B, arranged as an internal stack.
@@ -27,7 +36,7 @@ This assembly language is for a machine with four registers,
 |brz| 15| offset| if A == 0 then PC := PC + offset;| If accumulator is zero, branch to specified offset|
 |brlz| 16| offset| if A < 0 then PC := PC + offset;| If accumulator is less than zero, branch to specified offset|
 |br |17 |offset |PC := PC + offset; |Branch to specified offset|
-|HALT|18 | | |Stop the emulator. This is not a `real' instruction, but needed to tell your emulator when to finish.|
+|HALT|18 | | |Stop the emulator. This is not a 'real' instruction, but needed to tell your emulator when to finish.|
 
 
 My Implementation has separated Code Segment and Data segment, memory is allocated according to the data variables used + OFFSET, using dynamic memory allocation.
